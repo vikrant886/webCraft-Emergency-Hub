@@ -9,10 +9,10 @@ const http = require('http');
 app.get("/hello", (req, res) => {
   res.send("ehellot there");
 })
-const server = http.createServer(app); // Create an HTTP server
+const server = http.createServer(app); 
 const io = socketIo(server, {
   cors: {
-    origin: 'http://localhost:3000', // Replace with the origin of your React app
+    origin: 'https://web-craft-emergency-hub.vercel.app',
     methods: ['GET', 'POST'],
   },
 });
