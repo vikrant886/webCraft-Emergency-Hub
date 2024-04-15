@@ -68,6 +68,7 @@ export default function Home() {
             if (sec === "news") {
                 try {
                     const data = await getNews();
+                    console.log(data)
                     setNews(data.articles || []); // Assuming data contains 'articles'
                     console.log("News data:", data.articles);
                 } catch (error) {
