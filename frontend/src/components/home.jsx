@@ -69,7 +69,7 @@ export default function Home() {
                 try {
                     const data = await getNews();
                     console.log(data)
-                    setNews(data.articles || []); // Assuming data contains 'articles'
+                    setNews(data.articles || NULL); // Assuming data contains 'articles'
                     console.log("News data:", data.articles);
                 } catch (error) {
                     console.error("Error fetching news:", error);
@@ -216,24 +216,30 @@ export default function Home() {
                             }
 
                             {sec === "news" && (
-                                <div className="justify-center p-8  flex-col h-full items-center overflow-y-auto">
-                                    {news.map((d, index) => (
-                                        d.author && d.urlToImage ? (
-                                            <div key={index} className={`news-item items-center justify-center p-4 rounded-md mb-4 h-60 flex gap-8 flex-row ${index % 2 === 0 ? 'reverse' : ''}`}>
-                                                <div className="flex flex-row items-start gap-12 rounded-md bg-[#6BB77B] w-[80%] p-4 justify-start">
-                                                    <img src={d.urlToImage} className="w-40 h-40 ml-auto rounded-full" alt="" />
-                                                    <div className="flex flex-col">
-                                                        <p className="dark:text-white font-first text-2xl">{d.title}</p>
-                                                        <p className="dark:text-text-one">{d.content}</p>
-                                                        <p className="dark:text-text-one">{d.description}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ) : null
-                                    ))}
-                                </div>
+    <div className="justify-center p-8 flex-col h-full items-center overflow-y-auto">
+        {news && news.length > 0 ? (
+            news.map((d, index) => (
+                d.author && d.urlToImage ? (
+                    <div key={index} className={`news-item items-center justify-center p-4 rounded-md mb-4 h-60 flex gap-8 flex-row ${index % 2 === 0 ? 'reverse' : ''}`}>
+                        <div className="flex flex-row items-start gap-12 rounded-md bg-[#6BB77B] w-[80%] p-4 justify-start">
+                            <img src={d.urlToImage} className="w-40 h-40 ml-auto rounded-full" alt="" />
+                            <div className="flex flex-col">
+                                <p className="dark:text-white font-first text-2xl">{d.title}</p>
+                                <p className="dark:text-text-one">{d.content}</p>
+                                <p className="dark:text-text-one">{d.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                ) : null
+            ))
+        ) : (
+            <div className="flex items-center justify-center h-full">
+                <p className="text-gray-500">No available news</p>
+            </div>
+        )}
+    </div>
+)}
 
-                            )}
                             {
                                 sec === "map" && (
                                     <div className="w-full pl-20 overflow-hidden flex justify-center items-center h-full">
