@@ -69,7 +69,7 @@ export default function Home() {
                 try {
                     const data = await getNews();
                     console.log(data)
-                    setNews(data.articles || NULL); // Assuming data contains 'articles'
+                    setNews(data.articles || null); // Assuming data contains 'articles'
                     console.log("News data:", data.articles);
                 } catch (error) {
                     console.error("Error fetching news:", error);
